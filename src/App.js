@@ -28,7 +28,7 @@ function App () {
       let min = Math.floor(second/60);
       
       let sec = parseInt(second%60);
-      console.log(min," ",sec);
+      // console.log(min," ",sec);
       return `${min}:${sec < 10 ? '0' : ''}${sec}`
   }
 
