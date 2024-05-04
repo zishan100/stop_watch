@@ -44,7 +44,7 @@ function App () {
   return (
     <div >
       <h2>Stopwatch</h2>
-      <p>Time:{formatTime(elapsedTime)}</p>
+      <p>Time: {formatTime(elapsedTime)}</p>
       <button onClick={startStop} > { running ? 'Stop' : 'Start' } </button>
       <button onClick={reset} > Reset </button>  
     </div>
