@@ -3,50 +3,56 @@ import './index.css';
 
 function App () {
   
-  let [ running , setRunning ] = useState(false); 
-  let [elapsedTime , setelapsedTime] = useState(0);
-  
-  useEffect(()=>{
-    
-    let intervalId;
-    if( running ){
-       intervalId = setInterval(()=>{
-          setelapsedTime((prev)=>prev+1);
-          // console.log("Inside if cond: ",elapsedTime); 
-       },1000);    
-    }
-    
-    return ()=>{ 
-      // console.log("return statement");
-      clearInterval(intervalId)
-    };
+  let [formData , setFormData] = useState({
+    firstName:'',
+    lastName:'',
+    fullName:''
+  }) 
 
-  },[running]);
+  const handleInput = (e)=>{
+    const { name,value } = e.target;
 
-  const formatTime = (second)=>{
-        
-      let min = Math.floor(second/60);
-      
-      let sec = parseInt(second%60);
-      // console.log(min," ",sec);
-      return `${min}:${sec < 10 ? '0' : ''}${sec}`
+    setFormData({
+      ...formData,
+      [name]:value
+    })
+    // console.log(formData)
   }
 
-  const startStop = ()=>{
-    setRunning(!running); 
+  const formSubmit = (e)=>{
+    e.preventDefault();
+
+    const {firstName , lastName } = formData;
+    setFormData({
+      ...formData,
+      fullName:firstName+" "+lastName 
+    }) 
   }
   
-  const reset = ()=>{
-    setelapsedTime(0);
-    setRunning(false);
-  }
 
   return (
     <div >
-      <h2>Stopwatch</h2>
-      <p>Time: {formatTime(elapsedTime)}</p>
-      <button onClick={startStop} > { running ? 'Stop' : 'Start' } </button>
-      <button onClick={reset} > Reset </button>  
+      <h2>FULL NAME DISPLAY</h2>
+      <form onSubmit={formSubmit} >
+        <label htmlFor="firstName" >First Name:</label>
+        <input 
+          type='text' 
+          id='firstName' 
+          name='firstName' 
+          value={formData.firstName}
+          onChange={handleInput} 
+        /><br/>
+        <label htmlFor="lastName" >Last Name:</label>
+        <input 
+          type='text' 
+          id='lastName'  
+          name='lastName' 
+          value={formData.lastName}
+          onChange={handleInput} 
+        /><br/>
+        <button type='submit' >Submit</button> 
+      </form>
+      <p>{`${ formData.fullName && formData.fullName.trim() ? 'Full Name: '+formData.fullName : '' }    `} </p>
     </div>
   );
   
