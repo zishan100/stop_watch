@@ -41,6 +41,7 @@ function App () {
           name='firstName' 
           value={formData.firstName}
           onChange={handleInput} 
+          required
         /><br/>
         <label htmlFor="lastName" >Last Name:</label>
         <input 
@@ -48,7 +49,8 @@ function App () {
           id='lastName'  
           name='lastName' 
           value={formData.lastName}
-          onChange={handleInput} 
+          onChange={handleInput}
+          required 
         /><br/>
         <button type='submit' >Submit</button> 
       </form>
