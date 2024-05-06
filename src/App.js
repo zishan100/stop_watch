@@ -32,7 +32,7 @@ function App () {
 
   return (
     <div >
-      <h2>FULL NAME DISPLAY</h2>
+      <h2>Full Name Display</h2>
       <form onSubmit={formSubmit} >
         <label htmlFor="firstName" >First Name:</label>
         <input 
@@ -52,7 +52,11 @@ function App () {
         /><br/>
         <button type='submit' >Submit</button> 
       </form>
-      <p>{`${ formData.fullName && formData.fullName.trim() ? 'Full Name: '+formData.fullName : '' }    `} </p>
+      {
+        formData.fullName && formData.fullName.trim() ? 
+        (<p>Full Name: {formData.fullName}</p>) : ''
+      }
+      
     </div>
   );
   
