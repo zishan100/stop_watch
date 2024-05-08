@@ -1,6 +1,7 @@
 /*  
    # Stop watch miniAssignment ==> Completed
    # Display FullName miniAssignment ==> Completed
+   # Login Assignnmemt ==> Completed
 */
 
 // let [ running , setRunning ] = useState(false); 
@@ -96,3 +97,36 @@
 // }
 
 // </div>
+
+// <div >
+//       <h2>Login Page</h2>
+//       {
+//         message && (<p>{message}</p>)
+//       }
+
+//       {
+//         !isSuccess &&
+//         (<form onSubmit={onSubmitForm} >
+//           <label htmlFor='userName'  >Username: </label>
+//           <input 
+//             type='text' 
+//             id='userName' 
+//             name='username' 
+//             value={loginData.username} 
+//             onChange={handleChangeEvent}
+//             required
+//           /><br/>
+//           <label htmlFor='password'  >Password: </label>
+//           <input 
+//             type='password' 
+//             id='password' 
+//             name='password' 
+//             value={loginData.password} 
+//             onChange={handleChangeEvent}
+//             required
+//           /><br/>
+//           <button type='submit'>Submit</button>
+//         </form>)  
+//       }
+      
+//     </div>
