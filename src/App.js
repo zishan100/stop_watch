@@ -1,38 +1,61 @@
-import React, { Component } from 'react';
-import './index.css';
+import React, { useState } from "react";
 
-class App extends Component{
-  
-  constructor(props){
-    super(props);
+// Define a custom dictionary of words and their corrections
+const customDictionary = {
+  teh: "the",
+  wrok: "work",
+  fot: "for",
+  exampl: "example",
+};
 
-    this.state = { 
-      count:0
-    } 
-  }
-  
-  render(){
-    return (
-      <div >
-        <h2>Counter App</h2>
-        <p>Count: {this.state.count}</p> 
-        <button 
-          type='button' 
-          onClick={(e)=>this.setState((prev)=>{ 
-              return {count:prev.count+1} 
-          })} 
-        >Increment</button>
-        <button 
-          type='button' 
-          onClick={(e)=>this.setState((prev)=>{
-            return { count:prev.count-1 }
-          })} 
-        >Decrement</button>    
-      </div>
-    );  
-  } 
-  
-  
+function SpellCheckApp() {
+  let [spellCheck, setSpellCheck] = useState("");
+  let [suggestedText, setSuggestedText] = useState("");
+  // console.log(customDictionary);
+
+  const handleInputChange = (e) => {
+    const text = e.target.value;
+    // console.log("text :", text);
+    // console.log(spellCheck);
+    setSpellCheck(text);
+
+    // Implement a basic spelling check and correction
+    const words = text.split(" ");
+    // console.log("Word :", words);
+    const correctedWords = words.map((word) => {
+      const correctedWord = customDictionary[word.toLowerCase()];
+      return correctedWord || word;
+    });
+
+    // console.log("Correct word :", correctedWords);
+
+    const correctedText = correctedWords.join(" ");
+
+    // Set the suggested text (first corrected word)
+    const firstCorrection = correctedWords.find(
+      (word, index) => word !== words[index]
+    );
+
+    setSuggestedText(firstCorrection || "");
+  };
+
+  return (
+    <div>
+      <h1>Spell Check and Auto-Correction</h1>
+      <textarea
+        value={spellCheck}
+        onChange={handleInputChange}
+        placeholder="Enter text..."
+        rows={5}
+        cols={40}
+      />
+      {suggestedText && (
+        <p>
+          Did you mean: <strong>{suggestedText}</strong>?
+        </p>
+      )}
+    </div>
+  );
 }
 
-export default App;
+export default SpellCheckApp;
